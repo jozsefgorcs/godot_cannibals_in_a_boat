@@ -104,16 +104,15 @@
 [node name="Game" type="Node2D"]
 
 [node name="Priest" parent="." instance=ExtResource( 1 )]
-position = Vector2( 119.467, 152.741 )
-boat_node = NodePath("../Boat")
+position = Vector2( 119.467, 128.775 )
+boat_node_path = NodePath("../Boat")
 
 [node name="Priest2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 135.217, 152.991 )
-boat_node = NodePath("../Boat")
+boat_node_path = NodePath("../Boat")
 
 [node name="Priest3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 151.967, 152.741 )
-boat_node = NodePath("../Boat")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -131,7 +130,7 @@ position = Vector2( 183.787, 152.802 )
 position = Vector2( 199.264, 152.405 )
 
 [node name="CollisionOverlapChecker" parent="." instance=ExtResource( 4 )]
-position = Vector2( 155.5, 148 )
+position = Vector2( 158.864, 87.4555 )
 
 [node name="Boat" parent="." instance=ExtResource( 5 )]
 position = Vector2( 260.142, 172.834 )
