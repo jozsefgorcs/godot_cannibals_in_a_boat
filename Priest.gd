@@ -29,7 +29,7 @@ func _on_Priest_input_event(viewport, event, shape_idx):
 
 func on_click():
 	print("Click on priest" )
-	position = boat.get_empty_seat_pos()
+	boat.sit(self)
 	moving_to_boat = true
 	#move_and_slide( Vector2(5,5),Vector2(10,10))
 
