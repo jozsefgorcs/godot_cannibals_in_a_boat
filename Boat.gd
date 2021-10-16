@@ -14,7 +14,7 @@ func get_seat1_pos():
 	return $Seat1.global_position
 
 func get_seat2_pos():
-	return $Seat1.global_position
+	return $Seat2.global_position
 
 func has_empty_seat():	
 	return false
@@ -24,12 +24,12 @@ func get_empty_seat_pos():
 	return get_seat1_pos()
 
 func sit(who):
-	print("call sit")
+	print(str("call sit. seat1:", seat_1_taken,"seat 2", seat_2_taken))
 	if(seat_1_taken && seat_2_taken):
 		print ("error")
 	if(!seat_1_taken):
 		seat_1_taken = true
 		who.position = get_seat1_pos()
-	if(!seat_2_taken):
+	elif(!seat_2_taken):
 		seat_2_taken = true
 		who.position = get_seat2_pos()
