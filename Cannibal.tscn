@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Tiles/colored_transparent_packed.png" type="Texture" id=1]
-[ext_resource path="res://Cannibal.gd" type="Script" id=2]
+[ext_resource path="res://Character.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.41367, 6.30734 )
@@ -23,14 +23,13 @@ tracks/0/keys = {
 "values": [ 0.0, 9.0, 0.0, -9.0, 0.0 ]
 }
 
-[node name="Cannibal" type="RigidBody2D"]
+[node name="Cannibal" type="KinematicBody2D"]
 input_pickable = true
 collision_layer = 2
-gravity_scale = 0.0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-rotation = 0.101114
+rotation = 0.0412406
 texture = ExtResource( 1 )
 hframes = 48
 vframes = 22
@@ -44,4 +43,4 @@ shape = SubResource( 1 )
 autoplay = "idle"
 anims/idle = SubResource( 2 )
 
-[connection signal="input_event" from="." to="." method="_on_Cannibal_input_event"]
+[connection signal="input_event" from="." to="." method="_on_Character_input_event"]

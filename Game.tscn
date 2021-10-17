@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Priest.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tiles/colored_transparent_packed.png" type="Texture" id=2]
 [ext_resource path="res://Cannibal.tscn" type="PackedScene" id=3]
 [ext_resource path="res://CollisionOverlapChecker.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Boat.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Tiles/waterTop_low.png" type="Texture" id=6]
+[ext_resource path="res://Spawnplace.tscn" type="PackedScene" id=7]
+[ext_resource path="res://GameManager.gd" type="Script" id=8]
 
 [sub_resource type="TileSet" id=1]
 0/name = "colored_transparent_packed.png 0"
@@ -100,37 +103,144 @@
 5/shape_one_way_margin = 0.0
 5/shapes = [  ]
 5/z_index = 0
+6/name = "waterTop_low.png 6"
+6/texture = ExtResource( 6 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 0, 32, 128, 96 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+
+[sub_resource type="Animation" id=2]
+resource_name = "boat_back"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Boat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 335.014, 172.834 ), Vector2( 247.014, 172.834 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Boat:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 2.9, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 3.0, 3.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "boat_go"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Boat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 247.014, 172.834 ), Vector2( 335.014, 172.834 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Boat:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 1.9, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -3.0, -3.0, 0.0 ]
+}
 
 [node name="Game" type="Node2D"]
-
-[node name="Priest" parent="." instance=ExtResource( 1 )]
-position = Vector2( 119.467, 128.775 )
-boat_node_path = NodePath("../Boat")
-
-[node name="Priest2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 135.217, 152.991 )
-boat_node_path = NodePath("../Boat")
-
-[node name="Priest3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 151.967, 152.741 )
+script = ExtResource( 8 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 655366, 3, 0, 655367, 2, 0, 655368, 2, 0, 655369, 2, 0, 655370, 2, 0, 655371, 2, 0, 655372, 2, 0 )
-
-[node name="Cannibal" parent="." instance=ExtResource( 3 )]
-position = Vector2( 169.5, 153 )
-
-[node name="Cannibal2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 183.787, 152.802 )
-
-[node name="Cannibal3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 199.264, 152.405 )
+tile_data = PoolIntArray( 655366, 3, 0, 655367, 2, 0, 655368, 2, 0, 655369, 2, 0, 655370, 2, 0, 655371, 2, 0, 655372, 2, 0, 655383, 2, 0, 655384, 2, 0, 655385, 2, 0, 655386, 2, 0, 655387, 2, 0, 655388, 2, 0, 655389, 1, 0 )
 
 [node name="CollisionOverlapChecker" parent="." instance=ExtResource( 4 )]
 position = Vector2( 158.864, 87.4555 )
 
 [node name="Boat" parent="." instance=ExtResource( 5 )]
-position = Vector2( 260.142, 172.834 )
+position = Vector2( 247.014, 172.834 )
+
+[node name="SpawnPlaces" type="Node2D" parent="."]
+
+[node name="Spawnplace" parent="SpawnPlaces" instance=ExtResource( 7 )]
+position = Vector2( 119.94, 152.903 )
+
+[node name="Spawnplace2" parent="SpawnPlaces" instance=ExtResource( 7 )]
+position = Vector2( 135.972, 153.041 )
+
+[node name="Spawnplace3" parent="SpawnPlaces" instance=ExtResource( 7 )]
+position = Vector2( 151.72, 153.167 )
+
+[node name="Spawnplace4" parent="SpawnPlaces" instance=ExtResource( 7 )]
+position = Vector2( 167.885, 153.233 )
+
+[node name="Spawnplace5" parent="SpawnPlaces" instance=ExtResource( 7 )]
+position = Vector2( 183.931, 153.115 )
+
+[node name="Spawnplace6" parent="SpawnPlaces" instance=ExtResource( 7 )]
+position = Vector2( 199.889, 153.248 )
+
+[node name="Spawnplace7" parent="SpawnPlaces" instance=ExtResource( 7 )]
+position = Vector2( 376.005, 153.136 )
+
+[node name="Spawnplace8" parent="SpawnPlaces" instance=ExtResource( 7 )]
+position = Vector2( 391.877, 153.346 )
+
+[node name="Spawnplace9" parent="SpawnPlaces" instance=ExtResource( 7 )]
+position = Vector2( 408.064, 153.136 )
+
+[node name="Spawnplace10" parent="SpawnPlaces" instance=ExtResource( 7 )]
+position = Vector2( 423.831, 152.926 )
+
+[node name="Spawnplace11" parent="SpawnPlaces" instance=ExtResource( 7 )]
+position = Vector2( 439.913, 153.031 )
+
+[node name="Spawnplace12" parent="SpawnPlaces" instance=ExtResource( 7 )]
+position = Vector2( 455.89, 153.136 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/boat_back = SubResource( 2 )
+anims/boat_go = SubResource( 3 )
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="Priest" parent="Characters" instance=ExtResource( 1 )]
+
+[node name="Priest2" parent="Characters" instance=ExtResource( 1 )]
+
+[node name="Priest3" parent="Characters" instance=ExtResource( 1 )]
+
+[node name="Cannibal" parent="Characters" instance=ExtResource( 3 )]
+
+[node name="Cannibal2" parent="Characters" instance=ExtResource( 3 )]
+
+[node name="Cannibal3" parent="Characters" instance=ExtResource( 3 )]

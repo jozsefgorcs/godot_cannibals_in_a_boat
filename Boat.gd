@@ -30,6 +30,10 @@ func sit(who):
 	if(!seat_1_taken):
 		seat_1_taken = true
 		who.position = get_seat1_pos()
+		who.is_in_boat = true
+		who.current_seat = $Seat1
 	elif(!seat_2_taken):
 		seat_2_taken = true
 		who.position = get_seat2_pos()
+		who.current_seat = $Seat2
+	who.is_in_boat = true

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Tiles/colored_transparent_packed.png" type="Texture" id=1]
-[ext_resource path="res://Priest.gd" type="Script" id=2]
+[ext_resource path="res://Character.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.41367, 6.30734 )
@@ -59,4 +59,4 @@ autoplay = "idle"
 anims/idle = SubResource( 2 )
 anims/jump = SubResource( 3 )
 
-[connection signal="input_event" from="." to="." method="_on_Priest_input_event"]
+[connection signal="input_event" from="." to="." method="_on_Character_input_event"]
