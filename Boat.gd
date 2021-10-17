@@ -4,6 +4,8 @@ extends Area2D
 var seat_1_taken = false
 var seat_2_taken = false
 
+signal boat_operation_finished()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -18,6 +20,9 @@ func get_seat2_pos():
 
 func has_empty_seat():	
 	return false
+
+func all_seat_are_empty():
+	return !seat_1_taken && !seat_2_taken
 	
 func get_empty_seat_pos():
 	print(get_seat1_pos())
@@ -26,7 +31,7 @@ func get_empty_seat_pos():
 func sit(who):
 	print(str("call sit. seat1:", seat_1_taken,"seat 2", seat_2_taken))
 	if(seat_1_taken && seat_2_taken):
-		print ("error")
+		return print ("error")
 	if(!seat_1_taken):
 		seat_1_taken = true
 		who.position = get_seat1_pos()
@@ -37,6 +42,8 @@ func sit(who):
 		who.position = get_seat2_pos()
 		who.current_seat = $Seat2
 	who.is_in_boat = true
+	who.current_place = null
+	emit_signal("boat_operation_finished")
 
 func get_out(who, where_to_put):
 	who.is_in_boat = false
@@ -44,5 +51,6 @@ func get_out(who, where_to_put):
 		seat_1_taken = false
 	else:
 		seat_2_taken = false
-
 	who.position = where_to_put.global_position
+	who.current_place = where_to_put
+	emit_signal("boat_operation_finished")

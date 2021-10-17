@@ -1,20 +1,23 @@
 extends Area2D
 
+var checking_is_active= true
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+func _on_Timer_timeout():
+	if(!checking_is_active):
+		return
+	var array_of_bodies = get_overlapping_bodies()
+	var priestCount = 0
+	var cannibalCount = 0
+	for body in array_of_bodies:
+		if(body.get_collision_layer()==1):
+			priestCount +=1
+		elif(body.get_collision_layer()==2):
+			cannibalCount+=1
+	if(cannibalCount>priestCount):
+		print("attack!!!")
 
+func start_checking():
+	checking_is_active = true
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	var a = get_overlapping_bodies()
-	print(a.size())
-	pass # Replace with function body.
-
-
-func _physics_process(delta):
-	var a = get_overlapping_bodies()
-	if(a.size()>0):
-		pass
-
+func stop_checking():
+	checking_is_active = false

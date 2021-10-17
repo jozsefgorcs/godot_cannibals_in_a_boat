@@ -184,7 +184,7 @@ format = 1
 tile_data = PoolIntArray( 655366, 3, 0, 655367, 2, 0, 655368, 2, 0, 655369, 2, 0, 655370, 2, 0, 655371, 2, 0, 655372, 2, 0, 655383, 2, 0, 655384, 2, 0, 655385, 2, 0, 655386, 2, 0, 655387, 2, 0, 655388, 2, 0, 655389, 1, 0 )
 
 [node name="CollisionOverlapChecker" parent="." instance=ExtResource( 4 )]
-position = Vector2( 158.864, 87.4555 )
+position = Vector2( 183.28, 144.384 )
 
 [node name="Boat" parent="." instance=ExtResource( 5 )]
 position = Vector2( 247.014, 172.834 )
@@ -245,6 +245,12 @@ anims/boat_go = SubResource( 3 )
 
 [node name="Cannibal3" parent="Characters" instance=ExtResource( 3 )]
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="boat_operation_finished" from="Boat" to="." method="_on_Boat_boat_operation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="wants_get_out" from="Characters/Priest" to="." method="_on_Character_wants_get_out"]
 [connection signal="wants_to_sit" from="Characters/Priest" to="." method="_on_Character_wants_to_sit"]
 [connection signal="wants_get_out" from="Characters/Priest2" to="." method="_on_Character_wants_get_out"]
@@ -257,3 +263,4 @@ anims/boat_go = SubResource( 3 )
 [connection signal="wants_to_sit" from="Characters/Cannibal2" to="." method="_on_Character_wants_to_sit"]
 [connection signal="wants_get_out" from="Characters/Cannibal3" to="." method="_on_Character_wants_get_out"]
 [connection signal="wants_to_sit" from="Characters/Cannibal3" to="." method="_on_Character_wants_to_sit"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

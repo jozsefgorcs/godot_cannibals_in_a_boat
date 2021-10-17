@@ -5,6 +5,8 @@ var boat = null
 var is_in_boat = false
 var moving_to_boat = false
 var current_seat = null
+var current_place = null
+
 
 signal wants_to_sit(who)
 signal wants_get_out(who)
