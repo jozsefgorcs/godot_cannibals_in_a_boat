@@ -244,3 +244,16 @@ anims/boat_go = SubResource( 3 )
 [node name="Cannibal2" parent="Characters" instance=ExtResource( 3 )]
 
 [node name="Cannibal3" parent="Characters" instance=ExtResource( 3 )]
+
+[connection signal="wants_get_out" from="Characters/Priest" to="." method="_on_Character_wants_get_out"]
+[connection signal="wants_to_sit" from="Characters/Priest" to="." method="_on_Character_wants_to_sit"]
+[connection signal="wants_get_out" from="Characters/Priest2" to="." method="_on_Character_wants_get_out"]
+[connection signal="wants_to_sit" from="Characters/Priest2" to="." method="_on_Character_wants_to_sit"]
+[connection signal="wants_get_out" from="Characters/Priest3" to="." method="_on_Character_wants_get_out"]
+[connection signal="wants_to_sit" from="Characters/Priest3" to="." method="_on_Character_wants_to_sit"]
+[connection signal="wants_get_out" from="Characters/Cannibal" to="." method="_on_Character_wants_get_out"]
+[connection signal="wants_to_sit" from="Characters/Cannibal" to="." method="_on_Character_wants_to_sit"]
+[connection signal="wants_get_out" from="Characters/Cannibal2" to="." method="_on_Character_wants_get_out"]
+[connection signal="wants_to_sit" from="Characters/Cannibal2" to="." method="_on_Character_wants_to_sit"]
+[connection signal="wants_get_out" from="Characters/Cannibal3" to="." method="_on_Character_wants_get_out"]
+[connection signal="wants_to_sit" from="Characters/Cannibal3" to="." method="_on_Character_wants_to_sit"]

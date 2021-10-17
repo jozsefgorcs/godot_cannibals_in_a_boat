@@ -6,13 +6,15 @@ var is_in_boat = false
 var moving_to_boat = false
 var current_seat = null
 
+signal wants_to_sit(who)
+signal wants_get_out(who)
 
 
 func _ready():
 	pass
 
 func _physics_process(delta):
-	if(current_seat!=null):
+	if(is_in_boat && current_seat!=null):
 		position = current_seat.global_position
 
 func _on_Character_input_event(viewport, event, shape_idx):
@@ -22,10 +24,10 @@ func _on_Character_input_event(viewport, event, shape_idx):
 		self.on_click()
 
 func on_click():
-	print("Click on character" )
-	boat.sit(self)
-	moving_to_boat = true
-	#move_and_slide( Vector2(5,5),Vector2(10,10))
+	if is_in_boat:
+		emit_signal("wants_get_out", self)
+	else:
+		emit_signal("wants_to_sit", self)
 
 
 

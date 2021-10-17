@@ -37,3 +37,12 @@ func sit(who):
 		who.position = get_seat2_pos()
 		who.current_seat = $Seat2
 	who.is_in_boat = true
+
+func get_out(who, where_to_put):
+	who.is_in_boat = false
+	if(who.current_seat == $Seat1):
+		seat_1_taken = false
+	else:
+		seat_2_taken = false
+
+	who.position = where_to_put.global_position

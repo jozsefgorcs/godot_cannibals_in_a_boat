@@ -42,3 +42,11 @@ func _process(delta):
 func place_character(what, where):
 	what.position = where.position
 	what.boat = boat
+
+
+func _on_Character_wants_get_out(who):
+	boat.get_out(who,spawnpoint1)
+
+
+func _on_Character_wants_to_sit(who):
+	boat.sit(who)
