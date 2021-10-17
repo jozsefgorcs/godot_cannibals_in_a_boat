@@ -32,6 +32,10 @@ onready var cannibal3 = $Characters/Cannibal3
 var is_boat_left_side=true
 
 func _ready():
+	init_game()
+	
+	
+func init_game():
 	place_character(priest1, spawnpoint1)
 	place_character(priest2, spawnpoint2)
 	place_character(priest3, spawnpoint3)
@@ -39,6 +43,10 @@ func _ready():
 	place_character(cannibal2, spawnpoint5)
 	place_character(cannibal3, spawnpoint6)
 	
+	if(!is_boat_left_side):
+		$AnimationPlayer.play("boat_back")
+		
+	$Timer.start()
 	
 func _process(delta):
 	if(Input.is_action_just_pressed("boat_go") && !boat. all_seat_are_empty() && !$AnimationPlayer.is_playing()):
@@ -53,6 +61,9 @@ func _process(delta):
 func place_character(what, where):
 	what.position = where.position
 	what.boat = boat
+	what.current_seat = null
+	what.current_place = where
+	what.is_in_boat=false
 
 func get_a_free_spawn_point():
 	if (is_boat_left_side):
@@ -106,3 +117,8 @@ func _on_Timer_timeout():
 		$Timer.stop()
 	else:
 		print("game not yet finished")
+
+
+func _on_game_over():
+	$GameOver.popup()
+	pass # Replace with function body.

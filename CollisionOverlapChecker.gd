@@ -2,6 +2,8 @@ extends Area2D
 
 var checking_is_active= true
 
+signal game_over()
+
 func _on_Timer_timeout():
 	if(!checking_is_active):
 		return
@@ -13,8 +15,9 @@ func _on_Timer_timeout():
 			priestCount +=1
 		elif(body.get_collision_layer()==2):
 			cannibalCount+=1
-	if(cannibalCount>priestCount):
+	if(cannibalCount>priestCount && priestCount>0 ):
 		print("attack!!!")
+		emit_signal("game_over")
 
 func start_checking():
 	checking_is_active = true
