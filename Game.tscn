@@ -251,25 +251,6 @@ anims/boat_go = SubResource( 3 )
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="Button" type="Button" parent="."]
-margin_left = 15.0803
-margin_top = 11.1118
-margin_right = 100.08
-margin_bottom = 31.1118
-text = "reinit game"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GameOver" type="ConfirmationDialog" parent="."]
-margin_right = 200.0
-margin_bottom = 70.0
-popup_exclusive = true
-dialog_text = "Game over!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [connection signal="game_over" from="CollisionOverlapChecker" to="." method="_on_game_over"]
 [connection signal="game_over" from="CollisionOverlapChecker2" to="." method="_on_game_over"]
 [connection signal="boat_operation_finished" from="Boat" to="." method="_on_Boat_boat_operation_finished"]
@@ -288,4 +269,3 @@ __meta__ = {
 [connection signal="wants_get_out" from="Characters/Cannibal3" to="." method="_on_Character_wants_get_out"]
 [connection signal="wants_to_sit" from="Characters/Cannibal3" to="." method="_on_Character_wants_to_sit"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="pressed" from="Button" to="." method="init_game"]

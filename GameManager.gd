@@ -113,12 +113,17 @@ func _on_Boat_boat_operation_finished():
 
 func _on_Timer_timeout():
 	if(is_game_finished()):
-		print("game finished")
+		get_tree().change_scene("res://GameFinished.tscn")
 		$Timer.stop()
+		$CollisionOverlapChecker/Timer.stop()
+		$CollisionOverlapChecker2/Timer.stop()
 	else:
 		print("game not yet finished")
 
 
 func _on_game_over():
-	$GameOver.popup()
-	pass # Replace with function body.
+	
+	$Timer.stop()
+	$CollisionOverlapChecker/Timer.stop()
+	$CollisionOverlapChecker2/Timer.stop()
+	get_tree().change_scene("res://GameOver.tscn")
