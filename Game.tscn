@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Priest.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tiles/colored_transparent_packed.png" type="Texture" id=2]
 [ext_resource path="res://Cannibal.tscn" type="PackedScene" id=3]
-[ext_resource path="res://CollisionOverlapChecker.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Boat.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Tiles/waterTop_low.png" type="Texture" id=6]
 [ext_resource path="res://Spawnplace.tscn" type="PackedScene" id=7]
@@ -183,12 +182,6 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 655366, 3, 0, 655367, 2, 0, 655368, 2, 0, 655369, 2, 0, 655370, 2, 0, 655371, 2, 0, 655372, 2, 0, 655383, 2, 0, 655384, 2, 0, 655385, 2, 0, 655386, 2, 0, 655387, 2, 0, 655388, 2, 0, 655389, 1, 0 )
 
-[node name="CollisionOverlapChecker" parent="." instance=ExtResource( 4 )]
-position = Vector2( 183.28, 144.384 )
-
-[node name="CollisionOverlapChecker2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 413.78, 142.884 )
-
 [node name="Boat" parent="." instance=ExtResource( 5 )]
 position = Vector2( 247.014, 172.834 )
 
@@ -251,8 +244,6 @@ anims/boat_go = SubResource( 3 )
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="game_over" from="CollisionOverlapChecker" to="." method="_on_game_over"]
-[connection signal="game_over" from="CollisionOverlapChecker2" to="." method="_on_game_over"]
 [connection signal="boat_operation_finished" from="Boat" to="." method="_on_Boat_boat_operation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]

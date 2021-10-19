@@ -17,8 +17,12 @@ onready var finishpoint4 = $SpawnPlaces/Spawnplace10
 onready var finishpoint5 = $SpawnPlaces/Spawnplace11
 onready var finishpoint6 = $SpawnPlaces/Spawnplace12
 
+onready var boat_seat1 = $Boat/Seat1
+onready var boat_seat2 = $Boat/Seat2
+
 onready var starterSpawnPoints = [spawnpoint1,spawnpoint2,spawnpoint3,spawnpoint4,spawnpoint5,spawnpoint6]
 onready var finisherSpawnPoints = [finishpoint1,finishpoint2,finishpoint3,finishpoint4,finishpoint5,finishpoint6]
+onready var boat_seats = [boat_seat1, boat_seat2]
 
 onready var boat = $Boat
 
@@ -70,6 +74,15 @@ func get_a_free_spawn_point():
 		return get_a_free_spawn_point_from_array(starterSpawnPoints)
 	else:
 		return get_a_free_spawn_point_from_array(finisherSpawnPoints)
+
+func collect_characters_in_arrays(array1, array2):
+	var characters = []
+	var concat_array = array1+array2
+	for sp in concat_array:
+		if(sp.is_place_taken()):
+			characters.push_back(sp.get_taken_character().get_collision_layer())
+	return characters
+			
 		
 func is_game_finished():
 	return get_a_free_spawn_point_from_array(finisherSpawnPoints) == null
@@ -87,7 +100,6 @@ func _on_Character_wants_get_out(who):
 	boat.get_out(who,get_a_free_spawn_point())
 
 
-
 func _on_Character_wants_to_sit(who):
 	if($AnimationPlayer.is_playing()):
 		return
@@ -95,12 +107,10 @@ func _on_Character_wants_to_sit(who):
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	$CollisionOverlapChecker.start_checking()	
 	pass
 
 
 func _on_AnimationPlayer_animation_started(anim_name):
-	$CollisionOverlapChecker.stop_checking()	
 	pass # Replace with function body.
 
 
@@ -108,15 +118,39 @@ func _on_Boat_boat_operation_finished():
 	print ("boat operation finished")
 	pass # Replace with function body.
 
-
+func is_game_over():
+	var left_side=[]
+	var right_side=[]
+	if(is_boat_left_side):
+		left_side = collect_characters_in_arrays(starterSpawnPoints, boat_seats)
+		right_side = collect_characters_in_arrays(finisherSpawnPoints, [])
+	else:
+		right_side = collect_characters_in_arrays(finisherSpawnPoints, boat_seats)
+		left_side = collect_characters_in_arrays(starterSpawnPoints, [])
+			
+	return array_has_more_cannibal(left_side) || array_has_more_cannibal(right_side)
+	
+	
+func array_has_more_cannibal(array):
+	var priest_count = 0
+	var cannibal_count = 0
+	for collision_layer_id in array:
+		if(collision_layer_id==1):
+			priest_count +=1
+		else:
+			cannibal_count +=1
+	
+	return priest_count>0 && cannibal_count>priest_count
+		
 
 
 func _on_Timer_timeout():
 	if(is_game_finished()):
 		get_tree().change_scene("res://GameFinished.tscn")
 		$Timer.stop()
-		$CollisionOverlapChecker/Timer.stop()
-		$CollisionOverlapChecker2/Timer.stop()
+	if(is_game_over()):
+		get_tree().change_scene("res://GameOver.tscn")
+		$Timer.stop()
 	else:
 		print("game not yet finished")
 
@@ -124,6 +158,4 @@ func _on_Timer_timeout():
 func _on_game_over():
 	
 	$Timer.stop()
-	$CollisionOverlapChecker/Timer.stop()
-	$CollisionOverlapChecker2/Timer.stop()
 	get_tree().change_scene("res://GameOver.tscn")
