@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Priest.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tiles/colored_transparent_packed.png" type="Texture" id=2]
 [ext_resource path="res://Cannibal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Tiles/Terrain (16x16).png" type="Texture" id=4]
 [ext_resource path="res://Boat.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Tiles/waterTop_low.png" type="Texture" id=6]
 [ext_resource path="res://Spawnplace.tscn" type="PackedScene" id=7]
@@ -130,10 +131,33 @@
 7/shape_one_way_margin = 0.0
 7/shapes = [  ]
 7/z_index = 0
+8/name = "Terrain (16x16).png 8"
+8/texture = ExtResource( 4 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 96, 0, 48, 48 )
+8/tile_mode = 1
+8/autotile/bitmask_mode = 0
+8/autotile/bitmask_flags = [ Vector2( 0, 0 ), 256, Vector2( 0, 1 ), 260, Vector2( 0, 2 ), 4, Vector2( 1, 0 ), 320, Vector2( 1, 1 ), 325, Vector2( 1, 2 ), 5, Vector2( 2, 0 ), 64, Vector2( 2, 1 ), 65, Vector2( 2, 2 ), 1 ]
+8/autotile/icon_coordinate = Vector2( 0, 0 )
+8/autotile/tile_size = Vector2( 16, 16 )
+8/autotile/spacing = 0
+8/autotile/occluder_map = [  ]
+8/autotile/navpoly_map = [  ]
+8/autotile/priority_map = [  ]
+8/autotile/z_index_map = [  ]
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0
 
 [sub_resource type="Animation" id=2]
 resource_name = "boat_back"
-length = 3.0
+length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Boat:position")
 tracks/0/interp = 1
@@ -141,27 +165,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 3 ),
+"times": PoolRealArray( 0, 1.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 335.014, 172.834 ), Vector2( 247.014, 172.834 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Boat:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 2.9, 3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 3.0, 3.0, 0.0 ]
+"values": [ Vector2( 344, 168 ), Vector2( 232, 168 ) ]
 }
 
 [sub_resource type="Animation" id=3]
 resource_name = "boat_go"
-length = 2.0
+length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Boat:position")
 tracks/0/interp = 1
@@ -169,22 +181,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
+"times": PoolRealArray( 0, 1.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 247.014, 172.834 ), Vector2( 335.014, 172.834 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Boat:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 1.9, 2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, -3.0, -3.0, 0.0 ]
+"values": [ Vector2( 232, 168 ), Vector2( 344, 168 ) ]
 }
 
 [node name="Game" type="Node2D"]
@@ -194,48 +194,48 @@ script = ExtResource( 8 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 655366, 3, 0, 655367, 2, 0, 655368, 2, 0, 655369, 2, 0, 655370, 2, 0, 655371, 2, 0, 655372, 2, 0, 655383, 2, 0, 655384, 2, 0, 655385, 2, 0, 655386, 2, 0, 655387, 2, 0, 655388, 2, 0, 655389, 1, 0, 720909, 7, 0, 720910, 7, 0, 720911, 7, 0, 720912, 7, 0, 720913, 7, 0, 720914, 7, 0, 720915, 7, 0, 720916, 7, 0, 720917, 7, 0, 720918, 7, 0 )
+tile_data = PoolIntArray( 655363, 8, 0, 655364, 8, 1, 655365, 8, 1, 655366, 8, 1, 655367, 8, 1, 655368, 8, 1, 655369, 8, 1, 655370, 8, 1, 655371, 8, 1, 655372, 8, 2, 655383, 8, 0, 655384, 8, 1, 655385, 8, 1, 655386, 8, 1, 655387, 8, 1, 655388, 8, 1, 655389, 8, 1, 655390, 8, 1, 655391, 8, 1, 655392, 8, 2, 720899, 8, 65536, 720900, 8, 65537, 720901, 8, 65537, 720902, 8, 65537, 720903, 8, 65537, 720904, 8, 65537, 720905, 8, 65537, 720906, 8, 65537, 720907, 8, 65537, 720908, 8, 65538, 720909, 7, 0, 720910, 7, 0, 720911, 7, 0, 720912, 7, 0, 720913, 7, 0, 720914, 7, 0, 720915, 7, 0, 720916, 7, 0, 720917, 7, 0, 720918, 7, 0, 720919, 8, 65536, 720920, 8, 65537, 720921, 8, 65537, 720922, 8, 65537, 720923, 8, 65537, 720924, 8, 65537, 720925, 8, 65537, 720926, 8, 65537, 720927, 8, 65537, 720928, 8, 65538, 786435, 8, 131072, 786436, 8, 131073, 786437, 8, 131073, 786438, 8, 131073, 786439, 8, 131073, 786440, 8, 131073, 786441, 8, 131073, 786442, 8, 131073, 786443, 8, 131073, 786444, 8, 131074, 786445, 7, 0, 786446, 7, 0, 786447, 7, 0, 786448, 7, 0, 786449, 7, 0, 786450, 7, 0, 786451, 7, 0, 786452, 7, 0, 786453, 7, 0, 786454, 7, 0, 786455, 8, 131072, 786456, 8, 131073, 786457, 8, 131073, 786458, 8, 131073, 786459, 8, 131073, 786460, 8, 131073, 786461, 8, 131073, 786462, 8, 131073, 786463, 8, 131073, 786464, 8, 131074 )
 
 [node name="Boat" parent="." instance=ExtResource( 5 )]
-position = Vector2( 247.014, 172.834 )
+position = Vector2( 232, 168 )
 
 [node name="SpawnPlaces" type="Node2D" parent="."]
 
 [node name="Spawnplace" parent="SpawnPlaces" instance=ExtResource( 7 )]
-position = Vector2( 119.94, 152.903 )
+position = Vector2( 64, 146.926 )
 
 [node name="Spawnplace2" parent="SpawnPlaces" instance=ExtResource( 7 )]
-position = Vector2( 135.972, 153.041 )
+position = Vector2( 89.3619, 147 )
 
 [node name="Spawnplace3" parent="SpawnPlaces" instance=ExtResource( 7 )]
-position = Vector2( 151.72, 153.167 )
+position = Vector2( 112.48, 147.346 )
 
 [node name="Spawnplace4" parent="SpawnPlaces" instance=ExtResource( 7 )]
-position = Vector2( 167.885, 153.233 )
+position = Vector2( 136, 147.346 )
 
 [node name="Spawnplace5" parent="SpawnPlaces" instance=ExtResource( 7 )]
-position = Vector2( 183.931, 153.115 )
+position = Vector2( 160, 147.346 )
 
 [node name="Spawnplace6" parent="SpawnPlaces" instance=ExtResource( 7 )]
-position = Vector2( 199.889, 153.248 )
+position = Vector2( 184, 147.346 )
 
 [node name="Spawnplace7" parent="SpawnPlaces" instance=ExtResource( 7 )]
-position = Vector2( 376.005, 153.136 )
+position = Vector2( 376.005, 148.136 )
 
 [node name="Spawnplace8" parent="SpawnPlaces" instance=ExtResource( 7 )]
-position = Vector2( 391.877, 153.346 )
+position = Vector2( 399.877, 148.346 )
 
 [node name="Spawnplace9" parent="SpawnPlaces" instance=ExtResource( 7 )]
-position = Vector2( 408.064, 153.136 )
+position = Vector2( 423.064, 148.136 )
 
 [node name="Spawnplace10" parent="SpawnPlaces" instance=ExtResource( 7 )]
-position = Vector2( 423.831, 152.926 )
+position = Vector2( 446.831, 147.926 )
 
 [node name="Spawnplace11" parent="SpawnPlaces" instance=ExtResource( 7 )]
-position = Vector2( 439.913, 153.031 )
+position = Vector2( 469.913, 148.031 )
 
 [node name="Spawnplace12" parent="SpawnPlaces" instance=ExtResource( 7 )]
-position = Vector2( 455.89, 153.136 )
+position = Vector2( 493.89, 148.136 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/boat_back = SubResource( 2 )

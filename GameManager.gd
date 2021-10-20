@@ -57,11 +57,9 @@ func _process(delta):
 		if(is_boat_left_side):
 			$AnimationPlayer.play("boat_go")
 			is_boat_left_side=false
-			$Boat/Sprite.flip_h=false
 		else:
 			$AnimationPlayer.play("boat_back")
 			is_boat_left_side=true
-			$Boat/Sprite.flip_h=true
 
 
 func place_character(what, where):
@@ -177,8 +175,6 @@ func _on_Go_pressed():
 		if(is_boat_left_side):
 			$AnimationPlayer.play("boat_go")
 			is_boat_left_side=false
-			$Boat/Sprite.flip_h=false
 		else:
 			$AnimationPlayer.play("boat_back")
 			is_boat_left_side=true
-			$Boat/Sprite.flip_h=true
