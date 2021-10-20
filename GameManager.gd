@@ -57,9 +57,11 @@ func _process(delta):
 		if(is_boat_left_side):
 			$AnimationPlayer.play("boat_go")
 			is_boat_left_side=false
+			$Boat/Sprite.flip_h=false
 		else:
 			$AnimationPlayer.play("boat_back")
 			is_boat_left_side=true
+			$Boat/Sprite.flip_h=true
 
 
 func place_character(what, where):
@@ -93,6 +95,10 @@ func get_a_free_spawn_point_from_array(arr):
 			return sp
 	return null
 	
+func is_character_standing_on_left_side(who):
+	if(who.current_place==null):
+		return false
+	return starterSpawnPoints.has(who.current_place)
 
 func _on_Character_wants_get_out(who):
 	if($AnimationPlayer.is_playing()):
@@ -103,14 +109,19 @@ func _on_Character_wants_get_out(who):
 func _on_Character_wants_to_sit(who):
 	if($AnimationPlayer.is_playing()):
 		return
-	boat.sit(who)
+	if(is_boat_left_side && is_character_standing_on_left_side(who)):
+		boat.sit(who)
+	elif(!is_boat_left_side && !is_character_standing_on_left_side(who)):
+		boat.sit(who)
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
+	$Timer.start()
 	pass
 
 
 func _on_AnimationPlayer_animation_started(anim_name):
+	$Timer.stop()
 	pass # Replace with function body.
 
 

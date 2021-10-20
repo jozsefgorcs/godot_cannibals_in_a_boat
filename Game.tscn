@@ -116,6 +116,20 @@
 6/shape_one_way_margin = 0.0
 6/shapes = [  ]
 6/z_index = 0
+7/name = "colored_transparent_packed.png 7"
+7/texture = ExtResource( 2 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 128, 80, 16, 16 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
 
 [sub_resource type="Animation" id=2]
 resource_name = "boat_back"
@@ -180,7 +194,7 @@ script = ExtResource( 8 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 655366, 3, 0, 655367, 2, 0, 655368, 2, 0, 655369, 2, 0, 655370, 2, 0, 655371, 2, 0, 655372, 2, 0, 655383, 2, 0, 655384, 2, 0, 655385, 2, 0, 655386, 2, 0, 655387, 2, 0, 655388, 2, 0, 655389, 1, 0 )
+tile_data = PoolIntArray( 655366, 3, 0, 655367, 2, 0, 655368, 2, 0, 655369, 2, 0, 655370, 2, 0, 655371, 2, 0, 655372, 2, 0, 655383, 2, 0, 655384, 2, 0, 655385, 2, 0, 655386, 2, 0, 655387, 2, 0, 655388, 2, 0, 655389, 1, 0, 720909, 7, 0, 720910, 7, 0, 720911, 7, 0, 720912, 7, 0, 720913, 7, 0, 720914, 7, 0, 720915, 7, 0, 720916, 7, 0, 720917, 7, 0, 720918, 7, 0 )
 
 [node name="Boat" parent="." instance=ExtResource( 5 )]
 position = Vector2( 247.014, 172.834 )

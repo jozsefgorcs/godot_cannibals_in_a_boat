@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Tiles/colored_transparent_packed.png" type="Texture" id=1]
 [ext_resource path="res://Boat.gd" type="Script" id=2]
 [ext_resource path="res://Spawnplace.tscn" type="PackedScene" id=3]
 
@@ -8,12 +8,15 @@
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -0.293763, 2.90148 )
-scale = Vector2( 0.983446, 0.234373 )
+position = Vector2( 0.257454, -3.1053 )
+scale = Vector2( 1.42639, 0.98522 )
 texture = ExtResource( 1 )
+hframes = 48
+vframes = 22
+frame = 923
 
 [node name="Seat1" parent="." instance=ExtResource( 3 )]
-position = Vector2( -16.5178, -7.55099 )
+position = Vector2( -6.59592, -8.65342 )
 
 [node name="Seat2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 14.6301, -7.31503 )
+position = Vector2( 7.07057, -8.6537 )
