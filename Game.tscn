@@ -258,6 +258,20 @@ anims/boat_go = SubResource( 3 )
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 245.455
+margin_top = 228.719
+margin_right = 321.455
+margin_bottom = 272.719
+text = "GO"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="boat_operation_finished" from="Boat" to="." method="_on_Boat_boat_operation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
@@ -274,3 +288,4 @@ autostart = true
 [connection signal="wants_get_out" from="Characters/Cannibal3" to="." method="_on_Character_wants_get_out"]
 [connection signal="wants_to_sit" from="Characters/Cannibal3" to="." method="_on_Character_wants_to_sit"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_Go_pressed"]

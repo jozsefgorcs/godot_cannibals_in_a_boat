@@ -170,3 +170,15 @@ func _on_game_over():
 	
 	$Timer.stop()
 	get_tree().change_scene("res://GameOver.tscn")
+
+
+func _on_Go_pressed():
+	if(!boat. all_seat_are_empty() && !$AnimationPlayer.is_playing()):
+		if(is_boat_left_side):
+			$AnimationPlayer.play("boat_go")
+			is_boat_left_side=false
+			$Boat/Sprite.flip_h=false
+		else:
+			$AnimationPlayer.play("boat_back")
+			is_boat_left_side=true
+			$Boat/Sprite.flip_h=true
