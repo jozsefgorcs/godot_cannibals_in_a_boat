@@ -31,6 +31,7 @@ func on_click():
 	else:
 		emit_signal("wants_to_sit", self)
 
-
+func play_attack_animation():
+	$AnimationPlayer.play("attack")
 
 

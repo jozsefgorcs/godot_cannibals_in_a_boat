@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Tiles/Ninja.png" type="Texture" id=1]
 [ext_resource path="res://Character.gd" type="Script" id=2]
@@ -7,7 +7,35 @@
 extents = Vector2( 7.61439, 9.48231 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "idle"
+resource_name = "attack"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ninja:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ninja:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88.8, 113.6, 76.4, 88.8 ]
+}
+
+[sub_resource type="Animation" id=3]
 length = 1.1
 loop = true
 tracks/0/type = "value"
@@ -22,9 +50,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 3 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ninja:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
 
-[sub_resource type="Animation" id=3]
-resource_name = "jump"
+[sub_resource type="Animation" id=4]
 length = 0.2
 
 [node name="Priest" type="KinematicBody2D"]
@@ -33,17 +72,19 @@ script = ExtResource( 2 )
 
 [node name="Ninja" type="Sprite" parent="."]
 position = Vector2( -0.844681, -3.14632 )
+rotation = 1.54985
 texture = ExtResource( 1 )
 hframes = 11
-frame = 3
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.248223, 1.43597 )
+position = Vector2( -4.84961, -2.5755 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-anims/idle = SubResource( 2 )
-anims/jump = SubResource( 3 )
+anims/attack = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/jump = SubResource( 4 )
 
 [connection signal="input_event" from="." to="." method="_on_Character_input_event"]

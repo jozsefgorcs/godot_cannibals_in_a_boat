@@ -80,7 +80,7 @@ func collect_characters_in_arrays(array1, array2):
 	var concat_array = array1+array2
 	for sp in concat_array:
 		if(sp.is_place_taken()):
-			characters.push_back(sp.get_taken_character().get_collision_layer())
+			characters.push_back(sp.get_taken_character())
 	return characters
 			
 		
@@ -128,23 +128,37 @@ func _on_Boat_boat_operation_finished():
 	pass # Replace with function body.
 
 func is_game_over():
-	var left_side=[]
+	return left_side_has_more_cannibals() || right_side_has_more_cannibals()
+	
+func left_side_has_more_cannibals():
+	
+	return array_has_more_cannibal(get_left_side_characters()) 
+	
+func right_side_has_more_cannibals():
+	return array_has_more_cannibal(get_right_side_characters())
+		
+func get_right_side_characters():
 	var right_side=[]
 	if(is_boat_left_side):
-		left_side = collect_characters_in_arrays(starterSpawnPoints, boat_seats)
 		right_side = collect_characters_in_arrays(finisherSpawnPoints, [])
 	else:
 		right_side = collect_characters_in_arrays(finisherSpawnPoints, boat_seats)
+		
+	return right_side
+	
+func get_left_side_characters():
+	var left_side=[]
+	if(is_boat_left_side):
+		left_side = collect_characters_in_arrays(starterSpawnPoints, boat_seats)
+	else:
 		left_side = collect_characters_in_arrays(starterSpawnPoints, [])
-			
-	return array_has_more_cannibal(left_side) || array_has_more_cannibal(right_side)
-	
-	
-func array_has_more_cannibal(array):
+	return left_side
+		
+func array_has_more_cannibal(character_array):
 	var priest_count = 0
 	var cannibal_count = 0
-	for collision_layer_id in array:
-		if(collision_layer_id==1):
+	for character in character_array:
+		if(character.get_collision_layer()==1):
 			priest_count +=1
 		else:
 			cannibal_count +=1
@@ -158,17 +172,25 @@ func _on_Timer_timeout():
 		get_tree().change_scene("res://GameFinished.tscn")
 		$Timer.stop()
 	if(is_game_over()):
-		get_tree().change_scene("res://GameOver.tscn")
+		$GameOverTimer.start()
+		if(right_side_has_more_cannibals()):
+			attack_on_right_side()
+		if(left_side_has_more_cannibals()):
+			attack_on_left_side()
 		$Timer.stop()
+		pass
 	else:
 		print("game not yet finished")
 
-
-func _on_game_over():
+func attack_on_right_side():
+	var characters = get_right_side_characters()
+	for c in characters:
+		c.play_attack_animation()
 	
-	$Timer.stop()
-	get_tree().change_scene("res://GameOver.tscn")
-
+func attack_on_left_side():
+	var characters = get_left_side_characters()
+	for c in characters:
+		c.play_attack_animation()
 
 func _on_Go_pressed():
 	if(!boat. all_seat_are_empty() && !$AnimationPlayer.is_playing()):
@@ -178,3 +200,7 @@ func _on_Go_pressed():
 		else:
 			$AnimationPlayer.play("boat_back")
 			is_boat_left_side=true
+
+
+func _on_GameOverTimer_timeout():
+	get_tree().change_scene("res://GameOver.tscn")
