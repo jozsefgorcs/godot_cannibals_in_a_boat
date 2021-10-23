@@ -123,15 +123,10 @@ func _on_AnimationPlayer_animation_started(anim_name):
 	pass # Replace with function body.
 
 
-func _on_Boat_boat_operation_finished():
-	print ("boat operation finished")
-	pass # Replace with function body.
-
 func is_game_over():
 	return left_side_has_more_cannibals() || right_side_has_more_cannibals()
 	
 func left_side_has_more_cannibals():
-	
 	return array_has_more_cannibal(get_left_side_characters()) 
 	
 func right_side_has_more_cannibals():
