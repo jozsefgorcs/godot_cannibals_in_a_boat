@@ -51,6 +51,7 @@ func init_game():
 		$AnimationPlayer.play("boat_back")
 		
 	$Timer.start()
+	$UI.start_timer()
 	
 func _process(delta):
 	if(Input.is_action_just_pressed("boat_go") && !boat. all_seat_are_empty() && !$AnimationPlayer.is_playing()):
@@ -166,6 +167,7 @@ func _on_Timer_timeout():
 	if(is_game_finished()):
 		get_tree().change_scene("res://GameFinished.tscn")
 		$Timer.stop()
+		$UI.stop_timer()
 	if(is_game_over()):
 		$GameOverTimer.start()
 		if(right_side_has_more_cannibals()):
@@ -173,6 +175,7 @@ func _on_Timer_timeout():
 		if(left_side_has_more_cannibals()):
 			attack_on_left_side()
 		$Timer.stop()
+		$UI.stop_timer()
 		pass
 	else:
 		print("game not yet finished")
