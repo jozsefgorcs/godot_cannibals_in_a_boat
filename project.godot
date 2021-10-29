@@ -10,8 +10,9 @@ config_version=4
 
 [application]
 
-config/name="Ship"
+config/name="Priests and cannibals game"
 run/main_scene="res://Game.tscn"
+boot_splash/bg_color=Color( 0.12549, 0.145098, 0.192157, 1 )
 config/icon="res://icon.png"
 
 [display]

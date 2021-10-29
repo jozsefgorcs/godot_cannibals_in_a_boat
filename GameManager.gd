@@ -50,16 +50,18 @@ func init_game():
 	if(!is_boat_left_side):
 		$AnimationPlayer.play("boat_back")
 		
+		
 	$Timer.start()
-	$UI.start_timer()
 	
 func _process(delta):
 	if(Input.is_action_just_pressed("boat_go") && !boat. all_seat_are_empty() && !$AnimationPlayer.is_playing()):
 		if(is_boat_left_side):
 			$AnimationPlayer.play("boat_go")
+			$UI.add_step()
 			is_boat_left_side=false
 		else:
 			$AnimationPlayer.play("boat_back")
+			$UI.add_step()
 			is_boat_left_side=true
 
 
@@ -103,6 +105,7 @@ func _on_Character_wants_get_out(who):
 	if($AnimationPlayer.is_playing()):
 		 return
 	boat.get_out(who,get_a_free_spawn_point())
+	$UI.add_step()
 
 
 func _on_Character_wants_to_sit(who):
@@ -112,6 +115,7 @@ func _on_Character_wants_to_sit(who):
 		boat.sit(who)
 	elif(!is_boat_left_side && !is_character_standing_on_left_side(who)):
 		boat.sit(who)
+	$UI.add_step()
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
@@ -167,7 +171,7 @@ func _on_Timer_timeout():
 	if(is_game_finished()):
 		get_tree().change_scene("res://GameFinished.tscn")
 		$Timer.stop()
-		$UI.stop_timer()
+		
 	if(is_game_over()):
 		$GameOverTimer.start()
 		if(right_side_has_more_cannibals()):
@@ -175,7 +179,7 @@ func _on_Timer_timeout():
 		if(left_side_has_more_cannibals()):
 			attack_on_left_side()
 		$Timer.stop()
-		$UI.stop_timer()
+		
 		pass
 	else:
 		print("game not yet finished")
@@ -198,6 +202,7 @@ func _on_Go_pressed():
 		else:
 			$AnimationPlayer.play("boat_back")
 			is_boat_left_side=true
+		$UI.add_step()
 
 
 func _on_GameOverTimer_timeout():

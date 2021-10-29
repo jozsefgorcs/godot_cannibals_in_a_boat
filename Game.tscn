@@ -283,10 +283,12 @@ tracks/0/keys = {
 script = ExtResource( 8 )
 
 [node name="UI" parent="." instance=ExtResource( 17 )]
-margin_left = -24.0
-margin_top = -14.0
-margin_right = -5.0
-margin_bottom = 0.0
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_left = -9.5
+margin_top = 0.0
+margin_right = 9.5
+margin_bottom = 14.0
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -300,7 +302,6 @@ position = Vector2( 228.028, 151.221 )
 [node name="Camera2D" type="Camera2D" parent="Boat"]
 position = Vector2( 56, -16.795 )
 current = true
-zoom = Vector2( 1.15, 1.15 )
 smoothing_enabled = true
 
 [node name="SpawnPlaces" type="Node2D" parent="."]
